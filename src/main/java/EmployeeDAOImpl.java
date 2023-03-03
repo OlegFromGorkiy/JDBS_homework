@@ -20,7 +20,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             statement.setString(3, employee.getGender());
             statement.setInt(4, employee.getAge());
             statement.setInt(5, employee.getCity().getId());
-            statement.executeQuery();
+            statement.executeUpdate();
+
         }catch (SQLTimeoutException e1){
             System.out.println("timeout");
             e1.printStackTrace();
@@ -82,7 +83,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         try (PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setString(1, gender);
             statement.setInt(2, id);
-            statement.executeQuery();
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,7 +94,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         String request = "DELETE FROM employee WHERE id=(?)";
         try (PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setInt(1, id);
-            statement.executeQuery();
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
