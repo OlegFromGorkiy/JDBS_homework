@@ -16,12 +16,14 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int city;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id")
+    private City city;
 
-    public Employee() {}
+    public Employee() {
+    }
 
-    public Employee(String firstName, String lastName, String gender, int age, int city) {
+    public Employee(String firstName, String lastName, String gender, int age, City city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -29,7 +31,7 @@ public class Employee {
         this.city = city;
     }
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, int city) {
+    public Employee(int id, String firstName, String lastName, String gender, int age, City city) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -78,11 +80,11 @@ public class Employee {
         this.age = age;
     }
 
-    public int getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -108,7 +110,7 @@ public class Employee {
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
         result = 31 * result + age;
-        result = 31 * result + city;
+        result = 31 * result + (city != null ? city.hashCode() : 0);
         return result;
     }
 

@@ -1,8 +1,22 @@
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "city")
 public class City {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "city_id")
     private int id;
+    @Column(name = "city_name")
     private String cityName;
+
+    public City() {
+    }
+
+    public City(String cityName) {
+        this.cityName = cityName;
+    }
 
     public City(int id, String cityName) {
         this.id = id;
